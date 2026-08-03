@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Static Electricity Simulation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="page">
+    <section id="homeView" class="view active">
+      <header class="hero">
+        <p class="eyebrow">Interactive science experience</p>
+        <h1>⚡ Static Electricity Simulation</h1>
+        <p class="subtitle">Explore how friction creates charge, how electrons move, and why tiny sparks appear in everyday life.</p>
+        <div class="hero-actions">
+          <button id="startBtn">Start Producing Static Electricity</button>
+        </div>
+      </header>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Electron Flow</h3>
+          <p>Watch charge move from one material to another during rubbing.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Charge Build-Up</h3>
+          <p>See how opposite charges appear and grow with each rub.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Real-World Magic</h3>
+          <p>Discover why balloons stick and why hair can stand up.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="selectionView" class="view">
+      <div class="view-header">
+        <h2>Select a pair of objects</h2>
+        <p>Choose one pair to see how static electricity is created step by step.</p>
+      </div>
+
+      <div class="pair-grid">
+        <button class="pair-card" data-pair="balloon-wool">
+          <div class="pair-emoji">🎈 + 🧶</div>
+          <h3>Balloon & Wool</h3>
+          <p>A classic example where friction transfers electrons.</p>
+        </button>
+
+        <button class="pair-card" data-pair="comb-hair">
+          <div class="pair-emoji">🪮 + 💇</div>
+          <h3>Comb & Hair</h3>
+          <p>See how a comb can make hair stand up after rubbing.</p>
+        </button>
+
+        <button class="pair-card" data-pair="glass-silk">
+          <div class="pair-emoji">🧪 + 🧵</div>
+          <h3>Glass Rod & Silk</h3>
+          <p>Observe how a glass rod becomes charged when rubbed.</p>
+        </button>
+      </div>
+
+      <div class="selection-summary" id="selectionSummary">No pair selected yet. Pick a pair to begin.</div>
+
+      <div class="buttons-row">
+        <button id="confirmSelectionBtn">Continue to Simulation</button>
+        <button id="backHomeBtn" class="secondary">Back to Home</button>
+      </div>
+    </section>
+
+    <section id="simulationView" class="view">
+      <div class="view-header simulation-header">
+        <div class="header-text">
+          <h2 id="simulationTitle">Simulation</h2>
+          <p id="simulationSubtitle">Your selected experiment will appear here.</p>
+        </div>
+        <div class="top-actions">
+          <button id="changeSelectionBtn" class="secondary">Change Selection</button>
+          <button id="goHomeBtn" class="secondary">Back to Home</button>
+        </div>
+      </div>
+
+      <div class="stage-bar">
+        <div class="stage active" id="stage1">1. Ready</div>
+        <div class="stage" id="stage2">2. Rubbing</div>
+        <div class="stage" id="stage3">3. Charged</div>
+      </div>
+
+      <main class="layout">
+        <section class="simulation-card">
+          <div class="selection-chip" id="selectedPairChip">Selected pair: Balloon & Wool</div>
+
+          <div class="objects">
+            <div class="card" id="leftCard">
+              <div id="leftEmoji" class="emoji">🧶</div>
+              <h2 id="leftName">Wool</h2>
+              <p class="object-label">Material 1</p>
+            </div>
+
+            <div id="animationArea" class="animation-area" aria-label="Animation area">
+              <div class="field-ring"></div>
+              <div class="field-ring ring-two"></div>
+              <div class="spark" id="spark"></div>
+            </div>
+
+            <div class="card" id="rightCard">
+              <div id="rightEmoji" class="emoji">🎈</div>
+              <h2 id="rightName">Balloon</h2>
+              <p class="object-label">Material 2</p>
+            </div>
+          </div>
+
+          <div class="status">
+            <div class="status-box">
+              <h3>Status</h3>
+              <p><strong id="leftLabel">Wool Charge:</strong> <span id="leftCharge">Neutral</span></p>
+              <p><strong id="rightLabel">Balloon Charge:</strong> <span id="rightCharge">Neutral</span></p>
+              <p><strong>Electrons transferred:</strong> <span id="electronCount">0</span></p>
+              <div class="meter-wrap">
+                <div class="meter-label">Charge buildup</div>
+                <div class="charge-meter">
+                  <div class="charge-fill" id="chargeMeter"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="buttons">
+              <button id="rubBtn">Rub Objects</button>
+              <button id="resetBtn" class="secondary">Reset</button>
+            </div>
+          </div>
+
+          <div id="insightBox" class="insight-box">
+            Rub the objects to start the electron transfer.
+          </div>
+        </section>
+
+        <aside class="info-panel">
+          <section class="panel-card">
+            <h2>What is happening?</h2>
+            <p id="explanationText">Friction causes electrons to transfer between the objects, creating opposite charges.</p>
+          </section>
+
+          <section class="panel-card">
+            <h2>Real-world examples</h2>
+            <ul>
+              <li>Balloon sticking to a wall</li>
+              <li>Hair standing up after using a comb</li>
+              <li>Lightning during a storm</li>
+            </ul>
+          </section>
+
+          <section class="panel-card">
+            <h2>Fun fact</h2>
+            <p id="funFact">Static electricity is the reason tiny sparks can appear when you touch a doorknob after walking on a carpet.</p>
+          </section>
+
+          <section class="panel-card">
+            <h2>Quick quiz</h2>
+            <p id="quizQuestion">What happens after rubbing two objects together?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-answer="correct">One becomes positive and the other becomes negative.</button>
+              <button class="quiz-option">Both become positive.</button>
+              <button class="quiz-option">Both become neutral.</button>
+            </div>
+            <p id="quizFeedback" class="quiz-feedback">Choose an answer to test your understanding.</p>
+          </section>
+        </aside>
+      </main>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
