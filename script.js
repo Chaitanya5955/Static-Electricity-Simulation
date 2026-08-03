@@ -158,7 +158,7 @@ rubBtn.addEventListener("click", function () {
       electron.remove();
     }, 1000);
 
-    const profile = materialProfiles[materialSelect.value];
+    const profile = materialProfiles[selectedPair || "balloon-wool"];
     leftCharge.textContent = profile.leftChargeText;
     rightCharge.textContent = profile.rightChargeText;
     leftCharge.style.color = "#dc2626";
